@@ -1,0 +1,78 @@
+mixin feedbackMixin(feedbackArg)
+    .well
+        p #{feedbackArg.createdAtFormated}
+        h5 Feedback :
+        p #{feedbackArg.feedback}
+        h5 Feedforward :
+        p #{feedbackArg.feedforward}
+        h5 Evaluation :
+        if feedbackArg.isPertinent
+            .badge.green-background Pertinent
+        else
+            .badge.white-background Pertinent
+        if feedbackArg.isInspiring
+            .badge.blue-background Inspirant
+        else
+            .badge.white-background Inspirant
+
+mixin feedbackWithSenderRateMixin(feedbackArg)
+    .well
+        h5 De la part de : 
+            a(href="/user/#{feedbackArg.fromUserHydrated.id}/") #{feedbackArg.fromUserHydrated.prenom} #{feedbackArg.fromUserHydrated.nom}
+        p #{feedbackArg.createdAtFormated}
+        h5 Feedback :
+        p #{feedbackArg.feedback}
+        h5 Feedforward :
+        p #{feedbackArg.feedforward}
+        h5 Evaluation :
+
+        .switch
+            if feedbackArg.isPertinent
+                input.cmn-toggle.cmn-pertinent(checked type='checkbox' id='pertinent-#{feedbackArg.id}' onclick="toggleRating($(this), 'pertinent', #{feedbackArg.id});")
+            else
+                input.cmn-toggle.cmn-pertinent(type='checkbox' id='pertinent-#{feedbackArg.id}' onclick="toggleRating($(this), 'pertinent', #{feedbackArg.id});")
+            label(for='pertinent-#{feedbackArg.id}')
+        .switch
+            if feedbackArg.isInspiring
+                input.cmn-toggle.cmn-inspiring(checked type='checkbox' id='inspiring-#{feedbackArg.id}' onclick="toggleRating($(this), 'inspiring', #{feedbackArg.id});")
+            else
+                input.cmn-toggle.cmn-inspiring(type='checkbox' id='inspiring-#{feedbackArg.id}' onclick="toggleRating($(this), 'inspiring', #{feedbackArg.id});")
+            label(for='inspiring-#{feedbackArg.id}')
+
+mixin feedbackWithSenderMixin(feedbackArg)
+    .well
+        h5 De la part de : 
+            a(href="/user/#{feedbackArg.fromUserHydrated.id}/") #{feedbackArg.fromUserHydrated.prenom} #{feedbackArg.fromUserHydrated.nom}
+        p #{feedbackArg.createdAtFormated}
+        h5 Feedback :
+        p #{feedbackArg.feedback}
+        h5 Feedforward :
+        p #{feedbackArg.feedforward}
+        h5 Evaluation :
+        if feedbackArg.isPertinent
+            .badge.green-background Pertinent
+        else
+            .badge.white-background Pertinent
+        if feedbackArg.isInspiring
+            .badge.blue-background Inspirant
+        else
+            .badge.white-background Inspirant
+
+mixin feedbackWithReceiverMixin(feedbackArg)
+    .well
+        h5 Feedback laissé à : 
+            a(href="/user/#{feedbackArg.toUserHydrated.id}/") #{feedbackArg.toUserHydrated.prenom} #{feedbackArg.toUserHydrated.nom}
+        p #{feedbackArg.createdAtFormated}
+        h5 Feedback :
+        p #{feedbackArg.feedback}
+        h5 Feedforward :
+        p #{feedbackArg.feedforward}
+        h5 Evaluation :
+        if feedbackArg.isPertinent
+            .badge.green-background Pertinent
+        else
+            .badge.white-background Pertinent
+        if feedbackArg.isInspiring
+            .badge.blue-background Inspirant
+        else
+            .badge.white-background Inspirant

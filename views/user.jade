@@ -1,0 +1,120 @@
+extends layout
+
+include ./mixins/feedbackMixin.jade
+
+block content
+    .container
+        .well
+            .row
+                .col-md-3.col-xs-3
+                    if isMyProfile
+                        .reveal
+                            img.profile-picture(src='#{user.picture}' data-toggle="modal" data-target="#myModal")
+                            .hidden
+                                .caption
+                                    .centered(data-toggle="modal" data-target="#myModal")
+                                        p Cliquer pour éditer
+
+                        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+                            .modal-dialog(role='document')
+                                .modal-content
+                                    .modal-header
+                                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                            span(aria-hidden='true') ×
+                                        h4#myModalLabel.modal-title Changer sa photo
+                                    .modal-body
+                                        p Taille idéale 200x200px
+                                        p Seulement des images .png, .jpg ou .jpeg
+                                        form#uploadForm(enctype='multipart/form-data', action='changePicture', method='post')
+                                            input(type='file', name='picture' required accept=".jpg,.png,.jpeg")
+                                            input.btn.btn-primary(type='submit', value='Enregistrer', name='submit')
+                                    .modal-footer
+                                        button.btn.btn-default(type='button', data-dismiss='modal') Fermer
+                    else
+                        img(src='#{user.picture}' height='150px')
+
+                .col-md-9.col-xs-9
+                    h3 Profil de : #{user.prenom} #{user.nom}
+                    p #{user.poste} - #{user.email}
+                        .badge.green-background Pertinents : #{user.receivedPertinent}
+                        .badge.blue-background Inspirants : #{user.receivedInspiring}
+                    #description
+                        b Qui suis-je ? 
+                        if user.selfDescription
+                            span #{user.selfDescription}
+                        else
+                            i Non renseigné
+                        br
+                        b Quel est mon projet ? 
+                        if user.personalProject
+                            span #{user.personalProject}
+                        else
+                            i Non renseigné
+                    if !isCoach
+                        if isMyProfile
+                            #editDescription(style="display: none;")
+                                form.form-signin(method='post' action='selfDescriptionAndProject').span4
+                                    b Qui suis-je ?
+                                    textarea(rows="2" cols="50" name="selfDescription" maxlength=200) #{user.selfDescription}
+                                    br
+                                    b Quel est mon projet ?
+                                    textarea(rows="2" cols="50" name="personalProject" maxlength=200) #{user.personalProject}
+                                    br
+                                    button.btn.btn-lg.btn-primary(type='submit') Mettre à jour
+                            button.btn.btn-lg.btn-primary(id='show') Modifier mon profil
+
+        if !isCoach
+            if !isMyProfile
+                if canPostFeedback
+                    if feedbackPostReturnCode == 1
+                        p.bg-danger Une erreur est apparue pendant l'envoie de votre feedback
+                    if feedbackPostReturnCode == 0
+                        p.bg-success Votre feedback a été envoyé
+
+                    form.form-signin(method='post' action='feedback').well.span4
+                        label Feedback
+                        br
+                        textarea(rows="4" cols="50" name="feedback" required)
+                        br
+                        label Feedforward
+                        br
+                        textarea(rows="4" cols="50" name="feedforward" required)
+                        br
+                        button.btn.btn-lg.btn-primary(type='submit') Laisser un feedback
+
+                    h4 Mes feedbacks laissés pour #{user.prenom} #{user.nom}
+                    for feedback in user.feedbacksSent
+                        +feedbackMixin(feedback)
+
+            else
+                .well
+                    ul#myTab.nav.nav-tabs(role='tablist')
+                        li.active(role='presentation')
+                            a(href='#received', aria-controls='received', role='tab', data-toggle='tab') Feedbacks reçus
+                        li(role='presentation')
+                            a(href='#sent', aria-controls='sent', role='tab', data-toggle='tab') Feedbacks laissés
+                    .tab-content
+                        #received.tab-pane.active(role='tabpanel')
+                            for feedback in user.feedbacksReceived
+                                +feedbackWithSenderRateMixin(feedback)
+                        #sent.tab-pane(role='tabpanel')
+                            for feedback in user.feedbacksSent
+                                +feedbackWithReceiverMixin(feedback)
+        else
+            .well
+                ul#myTab.nav.nav-tabs(role='tablist')
+                    li.active(role='presentation')
+                        a(href='#received', aria-controls='received', role='tab', data-toggle='tab') Feedbacks reçus
+                    li(role='presentation')
+                        a(href='#sent', aria-controls='sent', role='tab', data-toggle='tab') Feedbacks laissés
+                .tab-content
+                    #received.tab-pane.active(role='tabpanel')
+                        for feedback in user.feedbacksReceived
+                            +feedbackWithSenderMixin(feedback)
+                    #sent.tab-pane(role='tabpanel')
+                        for feedback in user.feedbacksSent
+                            +feedbackWithReceiverMixin(feedback)
+
+    script(src='/javascripts/userPublic.js')
+
+

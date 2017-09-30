@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .container
+        table.table.table-striped
+            tr
+                th Numéro de la semaine
+                th Nombre de feedbacks
+                th Nombre d'évaluations
+            for report in reports
+                tr
+                    td #{report.week} - #{report.year}
+                    td #{report.feedbacks}
+                    td #{report.ratings}

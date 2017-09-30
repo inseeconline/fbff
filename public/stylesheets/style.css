@@ -1,0 +1,278 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 70px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.inline {
+	display: inline;
+}
+
+.badge {
+	margin-left: 10px;
+}
+
+.green-background.green-background {
+	background-color: #32C064;
+}
+
+.blue-background.blue-background {
+	background-color: #315ADB;
+}
+
+.grey-background.grey-background {
+	background-color: #313131;
+}
+
+.white-background.white-background {
+	background-color: white;
+	color: gray;
+	border-style: dashed;
+	border-color: gray;
+	border-width: 1px;
+}
+
+.hover-pertinent:hover::before {
+	content: "Pertinent : ";
+}
+
+.hover-inspiring:hover::before {
+	content: "Inspiring : ";
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-pertinent + label {
+  padding: 2px;
+  width: 80px;
+  height: 20px;
+  line-height: 12px;
+}
+input.cmn-pertinent + label:before,
+input.cmn-pertinent + label:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+  height: 18px;
+}
+input.cmn-pertinent + label:before {
+  background-color: white;
+  color: gray;
+  border-style: dashed;
+  border-color: gray;
+  border-width: 1px;
+  content: "Pertinent";
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+input.cmn-pertinent + label:after {
+  background-color: #32C064;
+  content: "Pertinent";
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+input.cmn-pertinent:checked + label:before {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+input.cmn-pertinent:checked + label:after {
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -ms-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+input.cmn-inspiring + label {
+  padding: 2px;
+  width: 80px;
+  height: 20px;
+  line-height: 12px;
+}
+input.cmn-inspiring + label:before,
+input.cmn-inspiring + label:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+  height: 18px;
+}
+input.cmn-inspiring + label:before {
+  background-color: white;
+  color: gray;
+  border-style: dashed;
+  border-color: gray;
+  border-width: 1px;
+  content: "Inspirant";
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+input.cmn-inspiring + label:after {
+  background-color: #315ADB;
+  content: "Inspirant";
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+input.cmn-inspiring:checked + label:before {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+input.cmn-inspiring:checked + label:after {
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -ms-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+.hover-outline {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.hover-outline:hover {
+  outline: 5px solid gray;
+  outline-offset: 1px;
+  cursor: pointer;
+}
+
+.profile-picture {
+	max-height: 200px;
+	max-width: 200px;
+  width:100%;
+}
+
+
+.reveal .hidden { display: block !important; visibility: visible !important; }
+.product:hover .reveal img { opacity: 1; }
+.reveal { position: relative; }
+.reveal .hidden {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.reveal:hover .hidden {
+  z-index: 10;
+  opacity: 1;
+}
+.reveal .caption {
+  position: absolute;
+  top: 0;
+  display: table;
+  width: 100%;
+  max-width: 200px;
+  height: 100%;
+  background-color: white; /* fallback for IE8 */
+  background-color: rgba(255, 255, 255, 0.9);
+  font: 14px/1.6 Lato, sans-serif;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #777;
+  letter-spacing: 1px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+}
+.reveal .hidden .caption .centered {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media (min-width: 480px) and (max-width: 979px) {
+  .reveal .caption {
+    font-size: 11px;
+  }
+}

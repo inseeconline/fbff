@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .container
+        .well
+            p Les comptes ont été importés dans l'application
+                ul
+                    li Comptes crées : #{report.create.length}
+                        ul
+                            for user in report.create
+                                li #{user}
+                    li Comptes mis à jour : #{report.update.length}
+                        ul
+                            for user in report.update
+                                li #{user}
+                    li Erreurs : #{report.err.length}
+                        ul
+                            for err in report.err
+                                li #{err}
+                br
+                a(href="/home") Revenir vers la liste des participants
+

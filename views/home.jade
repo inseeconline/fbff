@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .container
+        h1 Liste des participants
+        for user in users
+            a(href="/user/#{user.id}/")
+                .well
+                    img(src='#{user.picture}' height='50px')
+                    span  #{user.prenom} #{user.nom} - #{user.email}
+                        if userConnected.isCoach == 1
+                            |  - #{user.cohorte}
+                    .badge.green-background.hover-pertinent #{user.receivedPertinent}
+                    .badge.blue-background.hover-inspiring #{user.receivedInspiring}
